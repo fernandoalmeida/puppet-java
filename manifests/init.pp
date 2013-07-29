@@ -22,11 +22,10 @@ class java {
   }->
   exec {"accept_oracle_license":
     command => "echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections",
-    unless  => "debconf-get-selections | grep shared/accepted-oracle-license-v1-1 | grep select | grep true",
+    unless  => "debconf-get-selections | grep accepted-oracle-license-v1-1 | grep select | grep true",
   }->
   exec {'java-apt-get-update':
     command     => "apt-get update",
-    refreshonly => true,
   }->
   package {["oracle-java7-installer", "oracle-java7-set-default"]:
     ensure  => installed,
