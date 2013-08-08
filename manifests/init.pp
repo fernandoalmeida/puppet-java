@@ -26,6 +26,7 @@ class java {
   }->
   exec {'java-apt-get-update':
     command     => "apt-get update",
+    refreshonly => true,
   }->
   package {["oracle-java7-installer", "oracle-java7-set-default"]:
     ensure  => installed,
